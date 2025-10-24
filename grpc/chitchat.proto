@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package chitchat;
+option go_package = "./chitchat";
+
+service ChitChatService {
+    rpc JoinChat(JoinRequest) returns (stream BroadcastMessage);
+    rpc SendMessage(SendMessageRequest) returns (BroadcastMessage);
+    rpc LeaveChat(LeaveRequest) returns (BroadcastMessage);
+}
+
+message JoinRequest {
+    string participant_name = 1;
+    int64 logical_timestamp = 2;
+}
+
+message LeaveRequest { 
+    string participant_name = 1;
+    int64 logical_timestamp = 2;
+}
+
+message SendMessageRequest {
+    string participant_name = 1;
+    string content = 2;
+    int64 logical_timestamp = 3;
+}
+
+message BroadcastMessage {
+    string sender_name = 1;
+    int64 logical_timestamp = 2;
+    string content = 3;
+    MessageType message_type = 4; 
+}
+
+enum MessageType {
+    CHAT = 0;
+    JOIN = 1;
+    LEAVE = 2;
+}
+
