@@ -37,12 +37,6 @@ func (c *client) logEvent(eventType string, message string, additionalData ...in
 	shared.LogEvent("CLIENT", eventType, c.participantName, message, additionalData...)
 }
 
-func (c *client) updateLogicalClock(receivedTime int64) {
-	c.mu.Lock()
-	c.logicalClock = shared.Max(c.logicalClock, receivedTime) + 1
-	c.mu.Unlock()
-}
-
 func (c *client) getNextTimestamp() int64 {
 	c.mu.Lock()
 	c.logicalClock++
@@ -69,7 +63,9 @@ func (c *client) listenForMessages(stream chitchat.ChitChatService_JoinChatClien
 			return
 		}
 
-		c.updateLogicalClock(msg.LogicalTimestamp)
+		c.mu.Lock()
+		c.logicalClock = shared.Max(c.logicalClock, msg.LogicalTimestamp) + 1
+		c.mu.Unlock()
 
 		c.logEvent("MESSAGE_RECEIVED", fmt.Sprintf("From %s at logical time %d: %s",
 			msg.SenderName, msg.LogicalTimestamp, msg.Content))
@@ -78,7 +74,9 @@ func (c *client) listenForMessages(stream chitchat.ChitChatService_JoinChatClien
 }
 
 func (c *client) handleQuit() {
+
 	timestamp := c.getNextTimestamp()
+
 	leaveReq := &chitchat.LeaveRequest{
 		ParticipantName:  c.participantName,
 		LogicalTimestamp: timestamp,
