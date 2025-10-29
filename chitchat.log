@@ -1,66 +1,90 @@
-2025/10/27 21:47:54.367845 SERVER | STARTUP | ClientID:  | ChitChat server starting
-2025/10/27 21:47:54.368199 SERVER | STARTUP | ClientID:  | ChitChat server starting on port :50051
-2025/10/27 21:48:08.048165 CLIENT | CONNECTION | ClientID: Jeppe | Joining chat
-2025/10/27 21:48:08.058008 CLIENT | CONNECTION | ClientID: Jeppe | Successfully joined chat
-2025/10/27 21:48:08.058688 SERVER | CONNECTION | ClientID: Jeppe | Client connected at logical time 2
-2025/10/27 21:48:08.058726 SERVER | BROADCAST_JOIN | ClientID: Jeppe | Broadcasting join message to 1 clients
-2025/10/27 21:48:08.059813 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 2: Participant Jeppe joined Chit Chat at logical time 2
-2025/10/27 21:49:06.518009 CLIENT | CONNECTION | ClientID: Sabina | Joining chat
-2025/10/27 21:49:06.527149 CLIENT | CONNECTION | ClientID: Sabina | Successfully joined chat
-2025/10/27 21:49:06.527499 SERVER | CONNECTION | ClientID: Sabina | Client connected at logical time 3
-2025/10/27 21:49:06.527557 SERVER | BROADCAST_JOIN | ClientID: Sabina | Broadcasting join message to 2 clients
-2025/10/27 21:49:06.527770 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Sabina at logical time 3: Participant Sabina joined Chit Chat at logical time 3
-2025/10/27 21:49:06.528090 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 3: Participant Sabina joined Chit Chat at logical time 3
-2025/10/27 21:49:13.638986 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 6: hello
-2025/10/27 21:49:13.639053 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 2 clients at logical time 6
-2025/10/27 21:49:13.639376 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 6: hello
-2025/10/27 21:49:13.639398 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Jeppe at logical time 6: hello
-2025/10/27 21:49:13.639509 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 5: hello
-2025/10/27 21:49:27.452499 CLIENT | CONNECTION | ClientID: Chris | Joining chat
-2025/10/27 21:49:27.468240 CLIENT | CONNECTION | ClientID: Chris | Successfully joined chat
-2025/10/27 21:49:27.468525 SERVER | CONNECTION | ClientID: Chris | Client connected at logical time 7
-2025/10/27 21:49:27.468554 SERVER | BROADCAST_JOIN | ClientID: Chris | Broadcasting join message to 3 clients
-2025/10/27 21:49:27.468761 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 7: Participant Chris joined Chit Chat at logical time 7
-2025/10/27 21:49:27.468989 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 7: Participant Chris joined Chit Chat at logical time 7
-2025/10/27 21:49:27.469364 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 7: Participant Chris joined Chit Chat at logical time 7
-2025/10/27 21:49:29.723787 SERVER | MESSAGE_RECEIVED | ClientID: Chris | Valid message at logical time 10: whats upp
-2025/10/27 21:49:29.723860 SERVER | MESSAGE_DELIVERY | ClientID: Chris | Delivered message to 3 clients at logical time 10
-2025/10/27 21:49:29.724083 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 10: whats upp
-2025/10/27 21:49:29.724176 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 10: whats upp
-2025/10/27 21:49:29.724204 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 10: whats upp
-2025/10/27 21:49:29.724573 CLIENT | MESSAGE_SENT | ClientID: Chris | Sent message at logical time 9: whats upp
-2025/10/27 21:49:35.437974 SERVER | MESSAGE_RECEIVED | ClientID: Sabina | Valid message at logical time 13: nto much
-2025/10/27 21:49:35.438054 SERVER | MESSAGE_DELIVERY | ClientID: Sabina | Delivered message to 3 clients at logical time 13
-2025/10/27 21:49:35.438337 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Sabina at logical time 13: nto much
-2025/10/27 21:49:35.438432 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Sabina at logical time 13: nto much
-2025/10/27 21:49:35.438448 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 13: nto much
-2025/10/27 21:49:35.438533 CLIENT | MESSAGE_SENT | ClientID: Sabina | Sent message at logical time 12: nto much
-2025/10/27 21:49:50.583323 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 16: eyoo, all good, whats your weekend plans?
-2025/10/27 21:49:50.583405 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 3 clients at logical time 16
-2025/10/27 21:49:50.583753 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 15: eyoo, all good, whats your weekend plans?
-2025/10/27 21:49:50.583841 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Jeppe at logical time 16: eyoo, all good, whats your weekend plans?
-2025/10/27 21:49:50.583841 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Jeppe at logical time 16: eyoo, all good, whats your weekend plans?
-2025/10/27 21:49:50.584024 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 16: eyoo, all good, whats your weekend plans?
-2025/10/27 21:49:57.897098 SERVER | MESSAGE_RECEIVED | ClientID: Sabina | Valid message at logical time 19: going swimming
-2025/10/27 21:49:57.897178 SERVER | MESSAGE_DELIVERY | ClientID: Sabina | Delivered message to 3 clients at logical time 19
-2025/10/27 21:49:57.897445 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Sabina at logical time 19: going swimming
-2025/10/27 21:49:57.897487 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Sabina at logical time 19: going swimming
-2025/10/27 21:49:57.897731 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 19: going swimming
-2025/10/27 21:49:57.897833 CLIENT | MESSAGE_SENT | ClientID: Sabina | Sent message at logical time 18: going swimming
-2025/10/27 21:50:06.819537 SERVER | MESSAGE_RECEIVED | ClientID: Chris | Valid message at logical time 22: its like -10 degrees outside??
-2025/10/27 21:50:06.819858 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 22: its like -10 degrees outside??
-2025/10/27 21:50:06.819858 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 22: its like -10 degrees outside??
-2025/10/27 21:50:06.819874 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 22: its like -10 degrees outside??
-2025/10/27 21:50:06.819921 SERVER | MESSAGE_DELIVERY | ClientID: Chris | Delivered message to 3 clients at logical time 22
-2025/10/27 21:50:06.829788 CLIENT | MESSAGE_SENT | ClientID: Chris | Sent message at logical time 21: its like -10 degrees outside??
-2025/10/27 21:51:35.950786 SERVER | DISCONNECTION | ClientID: Chris | Client explicitly left at logical time 25
-2025/10/27 21:51:35.951213 CLIENT | DISCONNECTION | ClientID: Chris | Leaving chat
-2025/10/27 21:51:35.951296 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 25: Participant Chris left Chit Chat at logical time 25
-2025/10/27 21:51:35.951534 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 25: Participant Chris left Chit Chat at logical time 25
-2025/10/27 21:51:35.953861 SERVER | DISCONNECTION | ClientID: Chris | Client stream closed
-2025/10/27 21:51:48.378937 SERVER | DISCONNECTION | ClientID: Jeppe | Client stream closed
-2025/10/27 21:51:56.046692 SERVER | MESSAGE_RECEIVED | ClientID: Sabina | Valid message at logical time 28: oh noo
-2025/10/27 21:51:56.046759 SERVER | MESSAGE_DELIVERY | ClientID: Sabina | Delivered message to 1 clients at logical time 28
-2025/10/27 21:51:56.046995 CLIENT | MESSAGE_SENT | ClientID: Sabina | Sent message at logical time 27: oh noo
-2025/10/27 21:51:56.047084 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 28: oh noo
-2025/10/27 21:51:59.579328 SERVER | DISCONNECTION | ClientID: Sabina | Client stream closed
+2025/10/29 21:17:35.956103 SERVER | STARTUP | ClientID:  | ChitChat server starting
+2025/10/29 21:17:35.956326 SERVER | STARTUP | ClientID:  | ChitChat server starting on port :50051
+2025/10/29 21:17:47.030810 CLIENT | CONNECTION | ClientID: Jeppe | Joining chat
+2025/10/29 21:17:47.040790 CLIENT | CONNECTION | ClientID: Jeppe | Successfully joined chat
+2025/10/29 21:17:47.041079 SERVER | CONNECTION | ClientID: Jeppe | Client connected at logical time 2
+2025/10/29 21:17:47.041106 SERVER | BROADCAST_JOIN | ClientID: Jeppe | Broadcasting join message to 1 clients
+2025/10/29 21:17:47.041456 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 2: Participant Jeppe joined Chit Chat at logical time 2
+2025/10/29 21:17:49.306559 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 5: hello
+2025/10/29 21:17:49.306640 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 1 clients at logical time 5
+2025/10/29 21:17:49.306843 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 5: hello
+2025/10/29 21:17:49.306920 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 4: hello
+2025/10/29 21:18:03.973650 CLIENT | CONNECTION | ClientID: Chris | Joining chat
+2025/10/29 21:18:03.982667 CLIENT | CONNECTION | ClientID: Chris | Successfully joined chat
+2025/10/29 21:18:03.982862 SERVER | CONNECTION | ClientID: Chris | Client connected at logical time 6
+2025/10/29 21:18:03.982897 SERVER | BROADCAST_JOIN | ClientID: Chris | Broadcasting join message to 2 clients
+2025/10/29 21:18:03.983117 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 6: Participant Chris joined Chit Chat at logical time 6
+2025/10/29 21:18:03.983239 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 6: Participant Chris joined Chit Chat at logical time 6
+2025/10/29 21:18:06.547802 SERVER | MESSAGE_RECEIVED | ClientID: Chris | Valid message at logical time 9: hello
+2025/10/29 21:18:06.547860 SERVER | MESSAGE_DELIVERY | ClientID: Chris | Delivered message to 2 clients at logical time 9
+2025/10/29 21:18:06.548267 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 9: hello
+2025/10/29 21:18:06.548274 CLIENT | MESSAGE_SENT | ClientID: Chris | Sent message at logical time 8: hello
+2025/10/29 21:18:06.557536 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 9: hello
+2025/10/29 21:18:09.732640 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 12: oh hi
+2025/10/29 21:18:09.732707 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 2 clients at logical time 12
+2025/10/29 21:18:09.732924 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Jeppe at logical time 12: oh hi
+2025/10/29 21:18:09.733177 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 11: oh hi
+2025/10/29 21:18:09.733387 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 12: oh hi
+2025/10/29 21:18:12.227679 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 15: nice to see you
+2025/10/29 21:18:12.227766 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 2 clients at logical time 15
+2025/10/29 21:18:12.227914 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 14: nice to see you
+2025/10/29 21:18:12.227968 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Jeppe at logical time 15: nice to see you
+2025/10/29 21:18:12.227997 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 15: nice to see you
+2025/10/29 21:18:20.530447 CLIENT | CONNECTION | ClientID: Sabina | Joining chat
+2025/10/29 21:18:20.550465 CLIENT | CONNECTION | ClientID: Sabina | Successfully joined chat
+2025/10/29 21:18:20.550706 SERVER | CONNECTION | ClientID: Sabina | Client connected at logical time 16
+2025/10/29 21:18:20.550731 SERVER | BROADCAST_JOIN | ClientID: Sabina | Broadcasting join message to 3 clients
+2025/10/29 21:18:20.550879 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Sabina at logical time 16: Participant Sabina joined Chit Chat at logical time 16
+2025/10/29 21:18:20.550906 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Sabina at logical time 16: Participant Sabina joined Chit Chat at logical time 16
+2025/10/29 21:18:20.551029 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 16: Participant Sabina joined Chit Chat at logical time 16
+2025/10/29 21:18:24.416178 SERVER | MESSAGE_RECEIVED | ClientID: Sabina | Valid message at logical time 19: helloo :))
+2025/10/29 21:18:24.416243 SERVER | MESSAGE_DELIVERY | ClientID: Sabina | Delivered message to 3 clients at logical time 19
+2025/10/29 21:18:24.416370 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Sabina at logical time 19: helloo :))
+2025/10/29 21:18:24.416478 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Sabina at logical time 19: helloo :))
+2025/10/29 21:18:24.416478 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 19: helloo :))
+2025/10/29 21:18:24.416622 CLIENT | MESSAGE_SENT | ClientID: Sabina | Sent message at logical time 18: helloo :))
+2025/10/29 21:18:30.321113 SERVER | MESSAGE_RECEIVED | ClientID: Chris | Valid message at logical time 22: whats up?!
+2025/10/29 21:18:30.321187 SERVER | MESSAGE_DELIVERY | ClientID: Chris | Delivered message to 3 clients at logical time 22
+2025/10/29 21:18:30.321366 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 22: whats up?!
+2025/10/29 21:18:30.321553 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 22: whats up?!
+2025/10/29 21:18:30.321603 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 22: whats up?!
+2025/10/29 21:18:30.321637 CLIENT | MESSAGE_SENT | ClientID: Chris | Sent message at logical time 21: whats up?!
+2025/10/29 21:18:33.888277 SERVER | MESSAGE_RECEIVED | ClientID: Chris | Valid message at logical time 25: so good to see you !
+2025/10/29 21:18:33.888431 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 25: so good to see you !
+2025/10/29 21:18:33.888491 SERVER | MESSAGE_DELIVERY | ClientID: Chris | Delivered message to 3 clients at logical time 25
+2025/10/29 21:18:33.888564 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Chris at logical time 25: so good to see you !
+2025/10/29 21:18:33.888722 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 25: so good to see you !
+2025/10/29 21:18:33.888760 CLIENT | MESSAGE_SENT | ClientID: Chris | Sent message at logical time 24: so good to see you !
+2025/10/29 21:18:42.944760 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 28: ooo the gang back together
+2025/10/29 21:18:42.944833 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 3 clients at logical time 28
+2025/10/29 21:18:42.945076 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 27: ooo the gang back together
+2025/10/29 21:18:42.945200 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Jeppe at logical time 28: ooo the gang back together
+2025/10/29 21:18:42.945372 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Jeppe at logical time 28: ooo the gang back together
+2025/10/29 21:18:42.945555 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 28: ooo the gang back together
+2025/10/29 21:18:49.242655 SERVER | MESSAGE_RECEIVED | ClientID: Jeppe | Valid message at logical time 31: gtg ttyl
+2025/10/29 21:18:49.242722 SERVER | MESSAGE_DELIVERY | ClientID: Jeppe | Delivered message to 3 clients at logical time 31
+2025/10/29 21:18:49.242866 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Jeppe at logical time 31: gtg ttyl
+2025/10/29 21:18:49.242870 CLIENT | MESSAGE_RECEIVED | ClientID: Jeppe | From Jeppe at logical time 31: gtg ttyl
+2025/10/29 21:18:49.242966 CLIENT | MESSAGE_SENT | ClientID: Jeppe | Sent message at logical time 30: gtg ttyl
+2025/10/29 21:18:49.243106 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Jeppe at logical time 31: gtg ttyl
+2025/10/29 21:18:51.622320 SERVER | DISCONNECTION | ClientID: Jeppe | Client explicitly left at logical time 34
+2025/10/29 21:18:51.622623 CLIENT | DISCONNECTION | ClientID: Jeppe | Leaving chat
+2025/10/29 21:18:51.622641 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Jeppe at logical time 34: Participant Jeppe left Chit Chat at logical time 34
+2025/10/29 21:18:51.622707 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Jeppe at logical time 34: Participant Jeppe left Chit Chat at logical time 34
+2025/10/29 21:18:51.624067 SERVER | DISCONNECTION | ClientID: Jeppe | Client stream closed
+2025/10/29 21:19:00.030309 SERVER | MESSAGE_RECEIVED | ClientID: Chris | Valid message at logical time 37: alrighty then, good ngiht
+2025/10/29 21:19:00.030397 SERVER | MESSAGE_DELIVERY | ClientID: Chris | Delivered message to 2 clients at logical time 37
+2025/10/29 21:19:00.030613 CLIENT | MESSAGE_RECEIVED | ClientID: Chris | From Chris at logical time 37: alrighty then, good ngiht
+2025/10/29 21:19:00.030662 CLIENT | MESSAGE_SENT | ClientID: Chris | Sent message at logical time 36: alrighty then, good ngiht
+2025/10/29 21:19:00.030711 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 37: alrighty then, good ngiht
+2025/10/29 21:19:01.535911 SERVER | DISCONNECTION | ClientID: Chris | Client explicitly left at logical time 40
+2025/10/29 21:19:01.536166 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Chris at logical time 40: Participant Chris left Chit Chat at logical time 40
+2025/10/29 21:19:01.536256 CLIENT | DISCONNECTION | ClientID: Chris | Leaving chat
+2025/10/29 21:19:01.537635 SERVER | DISCONNECTION | ClientID: Chris | Client stream closed
+2025/10/29 21:19:06.970137 SERVER | MESSAGE_RECEIVED | ClientID: Sabina | Valid message at logical time 43: guess ill go too
+2025/10/29 21:19:06.970191 SERVER | MESSAGE_DELIVERY | ClientID: Sabina | Delivered message to 1 clients at logical time 43
+2025/10/29 21:19:06.970350 CLIENT | MESSAGE_RECEIVED | ClientID: Sabina | From Sabina at logical time 43: guess ill go too
+2025/10/29 21:19:06.970416 CLIENT | MESSAGE_SENT | ClientID: Sabina | Sent message at logical time 42: guess ill go too
+2025/10/29 21:19:08.815018 SERVER | DISCONNECTION | ClientID: Sabina | Client explicitly left at logical time 46
+2025/10/29 21:19:08.815534 CLIENT | DISCONNECTION | ClientID: Sabina | Leaving chat
+2025/10/29 21:19:08.850586 SERVER | DISCONNECTION | ClientID: Sabina | Client stream closed
