@@ -23,20 +23,6 @@ type client struct {
 	mu              sync.Mutex
 }
 
-func (c *client) validateMessage(content string) error {
-	return shared.ValidateMessage(content)
-}
-
-func setupLogging() {
-	if err := shared.InitializeSharedLogging(); err != nil {
-		log.Fatalf("Failed to initialize shared logging: %v", err)
-	}
-}
-
-func (c *client) logEvent(eventType string, message string, additionalData ...interface{}) {
-	shared.LogEvent("CLIENT", eventType, c.participantName, message, additionalData...)
-}
-
 func (c *client) getNextTimestamp() int64 {
 	c.mu.Lock()
 	c.logicalClock++
@@ -55,7 +41,6 @@ func connectToServer() (chitchat.ChitChatServiceClient, *grpc.ClientConn) {
 	return client, conn
 }
 
-// Listen for incoming broadcast messages - uses goroutine as required
 func (c *client) listenForMessages(stream chitchat.ChitChatService_JoinChatClient) {
 	for {
 		msg, err := stream.Recv()
@@ -67,7 +52,7 @@ func (c *client) listenForMessages(stream chitchat.ChitChatService_JoinChatClien
 		c.logicalClock = shared.Max(c.logicalClock, msg.LogicalTimestamp) + 1
 		c.mu.Unlock()
 
-		c.logEvent("MESSAGE_RECEIVED", fmt.Sprintf("From %s at logical time %d: %s",
+		shared.LogEvent("CLIENT", "MESSAGE_RECEIVED", c.participantName, fmt.Sprintf("From %s at logical time %d: %s",
 			msg.SenderName, msg.LogicalTimestamp, msg.Content))
 		fmt.Printf("[%d] %s: %s\n", msg.LogicalTimestamp, msg.SenderName, msg.Content)
 	}
@@ -84,10 +69,10 @@ func (c *client) handleQuit() {
 
 	_, err := c.grpcClient.LeaveChat(c.ctx, leaveReq)
 	if err != nil {
-		c.logEvent("ERROR", fmt.Sprintf("Error leaving chat: %v", err))
+		shared.LogEvent("CLIENT", "ERROR", c.participantName, fmt.Sprintf("Error leaving chat: %v", err))
 	}
 
-	c.logEvent("DISCONNECTION", "Leaving chat")
+	shared.LogEvent("CLIENT", "DISCONNECTION", c.participantName, "Leaving chat")
 	fmt.Printf("[%d] You left the chat\n", timestamp)
 	os.Exit(0)
 }
@@ -101,7 +86,7 @@ func (c *client) handleUserInput() {
 		fmt.Print("> ")
 		input, err := reader.ReadString('\n')
 		if err != nil {
-			c.logEvent("ERROR", fmt.Sprintf("Error reading input: %v", err))
+			shared.LogEvent("CLIENT", "ERROR", c.participantName, fmt.Sprintf("Error reading input: %v", err))
 			continue
 		}
 
@@ -114,14 +99,12 @@ func (c *client) handleUserInput() {
 			c.handleQuit()
 		}
 
-		// Validate message before sending
-		if err := c.validateMessage(message); err != nil {
+		if err := shared.ValidateMessage(message); err != nil {
 			fmt.Printf("Invalid message: %v\n", err)
-			c.logEvent("VALIDATION_ERROR", fmt.Sprintf("Invalid message rejected: %v", err))
+			shared.LogEvent("CLIENT", "VALIDATION_ERROR", c.participantName, fmt.Sprintf("Invalid message rejected: %v", err))
 			continue
 		}
 
-		// Send regular message
 		timestamp := c.getNextTimestamp()
 		sendReq := &chitchat.SendMessageRequest{
 			ParticipantName:  c.participantName,
@@ -131,22 +114,23 @@ func (c *client) handleUserInput() {
 
 		_, err = c.grpcClient.SendMessage(c.ctx, sendReq)
 		if err != nil {
-			c.logEvent("ERROR", fmt.Sprintf("Error sending message: %v", err))
+			shared.LogEvent("CLIENT", "ERROR", c.participantName, fmt.Sprintf("Error sending message: %v", err))
 		} else {
-			// Only log the sent message, don't display it locally
-			c.logEvent("MESSAGE_SENT", fmt.Sprintf("Sent message at logical time %d: %s", timestamp, message))
+			shared.LogEvent("CLIENT", "MESSAGE_SENT", c.participantName, fmt.Sprintf("Sent message at logical time %d: %s", timestamp, message))
 		}
 	}
 }
 
 func main() {
-	// Get participant name from command line arguments
+
 	if len(os.Args) < 2 {
 		log.Fatal("Usage: go run main.go <participant_name>")
 	}
 	participantName := os.Args[1]
 
-	setupLogging()
+	if err := shared.InitializeSharedLogging(); err != nil {
+		log.Fatalf("Failed to initialize shared logging: %v", err)
+	}
 	defer shared.CloseSharedLogging()
 
 	grpcClient, conn := connectToServer()
@@ -154,16 +138,14 @@ func main() {
 
 	ctx := context.Background()
 
-	// Create client instance
 	client := &client{
 		participantName: participantName,
 		grpcClient:      grpcClient,
 		ctx:             ctx,
 	}
 
-	client.logEvent("CONNECTION", "Joining chat")
+	shared.LogEvent("CLIENT", "CONNECTION", participantName, "Joining chat")
 
-	// Join the chat
 	timestamp := client.getNextTimestamp()
 	joinReq := &chitchat.JoinRequest{
 		ParticipantName:  participantName,
@@ -175,11 +157,9 @@ func main() {
 		log.Fatalf("Failed to join chat: %v", err)
 	}
 
-	client.logEvent("CONNECTION", "Successfully joined chat")
+	shared.LogEvent("CLIENT", "CONNECTION", participantName, "Successfully joined chat")
 
-	// Start goroutine to listen for incoming messages (requirement satisfied)
 	go client.listenForMessages(stream)
 
-	// Handle user input in main thread
 	client.handleUserInput()
 }

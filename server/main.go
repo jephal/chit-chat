@@ -12,7 +12,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-// Operation type constants
 const (
 	JOIN_OP       = 1
 	LEAVE_OP      = 2
@@ -20,7 +19,6 @@ const (
 	DISCONNECT_OP = 4
 )
 
-// Operation struct for internal coordination
 type Operation struct {
 	Type            int
 	ParticipantName string
@@ -38,18 +36,6 @@ type server struct {
 	mu            sync.RWMutex
 }
 
-func setupLogging() {
-	err := shared.InitializeSharedLogging()
-
-	if err != nil {
-		log.Fatalf("Failed to initialize shared logging: %v", err)
-	}
-}
-
-func (s *server) logEvent(eventType string, message string, clientID string, additionalData ...interface{}) {
-	shared.LogEvent("SERVER", eventType, clientID, message, additionalData...)
-}
-
 func (s *server) broadcastToAll(msg *chitchat.BroadcastMessage) {
 	s.mu.RLock()
 
@@ -61,7 +47,7 @@ func (s *server) broadcastToAll(msg *chitchat.BroadcastMessage) {
 
 			if err != nil {
 
-				s.logEvent("ERROR", fmt.Sprintf("Failed to send message: %v", err), participantName)
+				shared.LogEvent("SERVER", "ERROR", participantName, fmt.Sprintf("Failed to send message: %v", err))
 
 				disconnectOp := Operation{
 					Type:            DISCONNECT_OP,
@@ -170,8 +156,8 @@ func (s *server) coordinator() {
 			}
 
 			s.broadcastToAll(msg)
-			s.logEvent("CONNECTION", fmt.Sprintf("Client connected at logical time %d", currentTime), op.ParticipantName)
-			s.logEvent("BROADCAST_JOIN", fmt.Sprintf("Broadcasting join message to %d clients", clientCount), op.ParticipantName)
+			shared.LogEvent("SERVER", "CONNECTION", op.ParticipantName, fmt.Sprintf("Client connected at logical time %d", currentTime))
+			shared.LogEvent("SERVER", "BROADCAST_JOIN", op.ParticipantName, fmt.Sprintf("Broadcasting join message to %d clients", clientCount))
 
 			op.ResponseChan <- msg
 
@@ -190,8 +176,8 @@ func (s *server) coordinator() {
 			}
 
 			s.broadcastToAll(msg)
-			s.logEvent("MESSAGE_RECEIVED", fmt.Sprintf("Valid message at logical time %d: %s", currentTime, op.Content), op.ParticipantName)
-			s.logEvent("MESSAGE_DELIVERY", fmt.Sprintf("Delivered message to %d clients at logical time %d", clientCount, currentTime), op.ParticipantName)
+			shared.LogEvent("SERVER", "MESSAGE_RECEIVED", op.ParticipantName, fmt.Sprintf("Valid message at logical time %d: %s", currentTime, op.Content))
+			shared.LogEvent("SERVER", "MESSAGE_DELIVERY", op.ParticipantName, fmt.Sprintf("Delivered message to %d clients at logical time %d", clientCount, currentTime))
 
 			op.ResponseChan <- msg
 
@@ -210,7 +196,7 @@ func (s *server) coordinator() {
 			}
 
 			s.broadcastToAll(msg)
-			s.logEvent("DISCONNECTION", fmt.Sprintf("Client explicitly left at logical time %d", currentTime), op.ParticipantName)
+			shared.LogEvent("SERVER", "DISCONNECTION", op.ParticipantName, fmt.Sprintf("Client explicitly left at logical time %d", currentTime))
 
 			op.ResponseChan <- msg
 
@@ -218,14 +204,17 @@ func (s *server) coordinator() {
 			s.mu.Lock()
 			delete(s.activeClients, op.ParticipantName)
 			s.mu.Unlock()
-			s.logEvent("DISCONNECTION", "Client stream closed", op.ParticipantName)
+			shared.LogEvent("SERVER", "DISCONNECTION", op.ParticipantName, "Client stream closed")
 			close(op.ResponseChan)
 		}
 	}
 }
 
 func main() {
-	setupLogging()
+	err := shared.InitializeSharedLogging()
+	if err != nil {
+		log.Fatalf("Failed to initialize shared logging: %v", err)
+	}
 	defer shared.CloseSharedLogging()
 
 	shared.LogEvent("SERVER", "STARTUP", "", "ChitChat server starting")
